@@ -1,5 +1,7 @@
 package com.training.sanity.tests;
 
+import static org.testng.Assert.assertEquals;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -12,6 +14,7 @@ import org.testng.annotations.Test;
 
 import com.training.generics.ScreenShot;
 import com.training.pom.LoginPOM;
+import com.training.pom.Postpage;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
@@ -20,6 +23,7 @@ public class LoginTests {
 	private WebDriver driver;
 	private String baseUrl;
 	private LoginPOM loginPOM;
+	private Postpage postpage; 
 	private static Properties properties;
 	private ScreenShot screenShot;
 
@@ -34,6 +38,7 @@ public class LoginTests {
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver); 
+		postpage = new Postpage(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -42,14 +47,32 @@ public class LoginTests {
 	
 	@AfterMethod
 	public void tearDown() throws Exception {
-		Thread.sleep(1000);
-		driver.quit();
+		Thread.sleep(2000);
+//		driver.quit();
 	}
 	@Test
-	public void validLoginTest() {
+	public void validLoginTest() throws InterruptedException {
 		loginPOM.sendUserName("admin");
 		loginPOM.sendPassword("admin@123");
 		loginPOM.clickLoginBtn(); 
-		screenShot.captureScreenShot("First");
+		screenShot.captureScreenShot("Step 0");
+		Thread.sleep(2000);
+		postpage.clickPostAction();
+		screenShot.captureScreenShot("Step 1");
+		postpage.clickTagAction();
+		screenShot.captureScreenShot("Step 2");
+		postpage.selectTagDelete();
+		screenShot.captureScreenShot("Step 3");
+		postpage.deleteButton("delete");
+		screenShot.captureScreenShot("Step 4");
+		postpage.applyDeleteButton();
+		screenShot.captureScreenShot("Step 5");
+		postpage.tagDeleteConfirmMessage();
+		screenShot.captureScreenShot("Step 6");
+		
+		
+		
+		
+		
 	}
 }
