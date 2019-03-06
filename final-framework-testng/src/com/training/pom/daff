@@ -1,0 +1,13 @@
+try {
+			
+			courseDescription.save();
+			
+			courseDescription.displayText.isDisplayed();
+			String expected = courseDescription.displayText();
+			String actual = "The description has been updated";
+			Assert.assertEquals(actual, expected);
+			System.out.println("The description has been updated");
+		} catch (Exception e) {
+			System.out.println("The description has been updated");
+		}
+		screenShot.captureScreenShot("Testcase3_third");

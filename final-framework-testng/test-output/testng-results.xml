@@ -2,28 +2,40 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="72128" started-at="2019-02-15T11:04:02Z" finished-at="2019-02-15T11:05:14Z">
+  <suite name="Default suite" duration-ms="47378" started-at="2019-03-06T05:02:54Z" finished-at="2019-03-06T05:03:42Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="72128" started-at="2019-02-15T11:04:02Z" finished-at="2019-02-15T11:05:14Z">
-      <class name="com.training.sanity.tests.TestsRETC_24">
-        <test-method status="PASS" signature="setUpBeforeClass()[pri:0, instance:com.training.sanity.tests.TestsRETC_24@5c7fa833]" name="setUpBeforeClass" is-config="true" duration-ms="8" started-at="2019-02-15T16:34:02Z" finished-at="2019-02-15T16:34:02Z">
+    <test name="Default test" duration-ms="47378" started-at="2019-03-06T05:02:54Z" finished-at="2019-03-06T05:03:42Z">
+      <class name="com.training.regression.tests.LoginDBTest">
+        <test-method status="PASS" signature="setUpBeforeClass()[pri:0, instance:com.training.regression.tests.LoginDBTest@39aeed2f]" name="setUpBeforeClass" is-config="true" duration-ms="14" started-at="2019-03-06T10:32:54Z" finished-at="2019-03-06T10:32:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpBeforeClass -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.training.sanity.tests.TestsRETC_24@5c7fa833]" name="setUp" is-config="true" duration-ms="44680" started-at="2019-02-15T16:34:02Z" finished-at="2019-02-15T16:34:47Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.training.regression.tests.LoginDBTest@39aeed2f]" name="setUp" is-config="true" duration-ms="40367" started-at="2019-03-06T10:32:55Z" finished-at="2019-03-06T10:33:35Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="validLoginTest()[pri:0, instance:com.training.sanity.tests.TestsRETC_24@5c7fa833]" name="validLoginTest" duration-ms="25420" started-at="2019-02-15T16:34:47Z" finished-at="2019-02-15T16:35:12Z">
+        <test-method status="PASS" signature="loginDBTest(java.lang.String, java.lang.String)[pri:0, instance:com.training.regression.tests.LoginDBTest@39aeed2f]" name="loginDBTest" duration-ms="4870" started-at="2019-03-06T10:33:35Z" data-provider="db-inputs" finished-at="2019-03-06T10:33:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[admin@123]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- validLoginTest -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.training.sanity.tests.TestsRETC_24@5c7fa833]" name="tearDown" is-config="true" duration-ms="2001" started-at="2019-02-15T16:35:12Z" finished-at="2019-02-15T16:35:14Z">
+        </test-method> <!-- loginDBTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.training.regression.tests.LoginDBTest@39aeed2f]" name="tearDown" is-config="true" duration-ms="1731" started-at="2019-03-06T10:33:40Z" finished-at="2019-03-06T10:33:42Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.training.sanity.tests.TestsRETC_24 -->
+      </class> <!-- com.training.regression.tests.LoginDBTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
