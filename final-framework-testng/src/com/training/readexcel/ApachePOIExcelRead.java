@@ -71,6 +71,12 @@ public class ApachePOIExcelRead {
 							tempList1[cellCount] =cell.getStringCellValue();
 						}
 						break;
+					case Cell.CELL_TYPE_BLANK:
+						if(cell.getStringCellValue()==null){
+							tempList1[cellCount] =cell.getStringCellValue();
+						}
+						break; 
+
 					}
 					cellCount ++; 
 				}

@@ -26,6 +26,17 @@ public class Postpage {
 		this.ClickPost.click();
 	}
 
+
+	// click ALL Post menu
+	//*[@id="menu-posts"]/ul/li[2]/a
+	@FindBy(xpath = "//*[@id=\"menu-posts\"]/ul/li[2]/a")
+	WebElement ALLPost;
+
+	public void clickALLPostAction() {
+		this.ALLPost.click();
+	}
+
+		
 	// Search the input and submit button
 
 	@FindBy(id = "tag-search-input")
@@ -114,5 +125,83 @@ public class Postpage {
 		return CT;
 	}
 
+	//***************Post==>Categories Menu STARTS***************
+	//*[@id="menu-posts"]/ul/li[2]/a
+	//*[@id="menu-posts"]/ul/li[4]/a
+	// click Categories link from menu
+		@FindBy(xpath = "//*[@id=\"menu-posts\"]/ul/li[4]/a")
+		WebElement menuCategories;
+		public void clickCategoriesMenu() {
+			this.menuCategories.click();
+		}
+	
+		//Add New Category: Name, Slug, ParentCategory, Description
+		@FindBy(id = "tag-name")
+		WebElement inputNameAddNewCategory;
 
+		public void NameAddNewCategory(String Name) {
+			this.inputNameAddNewCategory.clear();
+			this.inputNameAddNewCategory.sendKeys(Name);
+		}
+
+		// Input SLUG in AddNewcategory Menu under Post=>Categories
+
+		@FindBy(id = "tag-slug")
+		WebElement inputSlugAddNewCategory;
+
+		public void SlugAddNewCategory(String Slug) {
+			this.inputSlugAddNewCategory.clear();
+			this.inputSlugAddNewCategory.sendKeys(Slug);
+		}
+
+		// select drop down in Parent Region Menu under Post=>Categories
+
+		@FindBy(id = "parent")
+		WebElement sParetFeatureAddNewCategory;
+
+		public void selectParentFeatureAddNewCategory(String p_category) {
+			Select option = new Select(sParetFeatureAddNewCategory);
+//			 option.selectByIndex(index);
+//			option.selectByValue(p_region);
+			option.selectByVisibleText(p_category);
+		}
+
+
+		// INPUT DESCRIPTION in ADD NEW Region Menu under Post=>Categories
+		@FindBy(id="tag-description")
+		WebElement inputDescAddNewCategory;
+
+		public void DescAddNewCategory(String desc) {
+			this.inputDescAddNewCategory.clear();
+			this.inputDescAddNewCategory.sendKeys(desc);
+		}
+
+
+
+		// click button ADD NEW Category Menu under Post=>Categories
+
+		@FindBy(id="submit")
+		WebElement buttonAddNewCategory;
+
+		public void buttonAddNewCategoryClick(){
+			this.buttonAddNewCategory.click();
+			
+		}
+	//Region search input AND click
+		@FindBy(id="tag-search-input")
+		WebElement categorySearch;
+
+		public void regionSearchInput(String ss) {
+			this.categorySearch.clear();
+			this.categorySearch.sendKeys(ss);//Search Regions
+//			WebElement searchbutton = driver.findElement(By.id("search-submit"));
+//			WebElement searchbutton = driver.findElement(By.name("Search Regions"));
+			//*[@id="search-submit"]
+			WebElement searchbutton = driver.findElement(By.xpath("//*[@id=\"search-submit\"]"));
+			searchbutton.click();
+		}
+		
+		
+		
+	//***************Post==>Categories Menu ENDS***************
 }

@@ -40,6 +40,16 @@ public class PropertyPage {
 		this.ClickAllProperties.click();
 	}
 
+	
+	//*[@id="menu-posts-property"]/ul/li[3]/a
+	
+	@FindBy(xpath = "//*[@id=\"menu-posts-property\"]/ul/li[3]/a")
+	WebElement ClickAddNew;
+
+	public void clickAddNewProperties() {
+		this.ClickAddNew.click();
+	}
+	
 	//Select Date drop down	
 		// @FindBy(xpath = "//*[@id=\"filter-by-date\"]")
 		// @FindBy(id="filter-by-date")
@@ -155,6 +165,7 @@ public class PropertyPage {
 
 		driver.findElement(By.xpath("//input[@placeholder='Search here for Properties..']")).sendKeys(sText);
 		driver.findElement(By.xpath("//div[@class=\'promagnifier\']//*[@version='1.1']")).click();
+		driver.findElement(By.xpath("//div[@class=\'resdrg\']//div[1]//div[1]//h3[1]")).click();
 	}
 
 	//input and search
@@ -293,6 +304,65 @@ public class PropertyPage {
 	// END ADD NEW REGION Regions Menu under Properties			
 
 
+//  Regions-- DB Start ADD NEW REGION Regions Menu under Properties	
+	// Input NAME in AddNewRegion Menu under Properties-Regions
+
+	@FindBy(id = "tag-name")
+	WebElement inputNameAddNewRegion1;
+
+	public String NameAddNewRegionDB(String Name) {
+		this.inputNameAddNewRegion1.clear();
+		this.inputNameAddNewRegion1.sendKeys(Name);
+		return inputNameAddNewRegion1.getAttribute("value");
+	}
+
+	// Input SLUG in AddNewRegion Menu under Properties-Regions
+
+	@FindBy(id = "tag-slug")
+	WebElement inputSlugAddNewRegion1;
+
+	public String SlugAddNewRegionDB(String Slug) {
+		this.inputSlugAddNewRegion1.clear();
+		this.inputSlugAddNewRegion1.sendKeys(Slug);
+		return inputSlugAddNewRegion1.getAttribute("value");
+	}
+
+	// select drop down in Parent Region Menu under Properties-Regions
+
+	@FindBy(id = "parent")
+	WebElement sParetRegionAddNewRegion1;
+
+	public String selectParetRegionAddNewRegionDB(String p_region) {
+		Select option = new Select(sParetRegionAddNewRegion1);
+//		 option.selectByIndex(index);
+//		option.selectByValue(p_region);
+		option.selectByVisibleText(p_region);
+		return p_region;
+	}
+
+
+	// INPUT DESCRIPTION in ADD NEW Region Menu under Properties-Regions
+	@FindBy(id="tag-description")
+	WebElement inputDescAddNewRegion1;
+
+	public String DescAddNewRegionDB(String desc) {
+		this.inputDescAddNewRegion1.clear();
+		this.inputDescAddNewRegion1.sendKeys(desc);
+		return inputDescAddNewRegion1.getAttribute("value");
+	}
+
+
+
+	// click button ADD NEW REGION Regions Menu under Properties
+
+
+	
+	
+	
+	
+	
+	
+	
 //id="tag-description"/
 
 

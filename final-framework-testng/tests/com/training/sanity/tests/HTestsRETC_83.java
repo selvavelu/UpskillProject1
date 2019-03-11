@@ -25,13 +25,14 @@ import com.training.pom.Postpage;
 import com.training.pom.PropertyPage;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
-public class HTestsRETC_1 {
+//objective  application allows admin to add multiple post based on the created category
+public class HTestsRETC_83 {
 
 	private WebDriver driver;
 	private String baseUrl;
 	private LoginPOM loginPOM;
 	private NewPostPage newpostpage;
+	private Postpage postpage;
 	private PropertyPage propertypage;
 	private static Properties properties;
 	private ScreenShot screenShot;
@@ -50,6 +51,7 @@ public class HTestsRETC_1 {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver);
 		newpostpage = new NewPostPage(driver);
+		postpage = new Postpage(driver);
 		propertypage = new PropertyPage(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver);
@@ -63,34 +65,69 @@ public class HTestsRETC_1 {
 		Thread.sleep(2000);
 		// driver.quit();
 	}
-
+//login as admin
+	
 	@Test (priority= 1, dataProvider = "excel-inputs-login", dataProviderClass = LoginDataProviders.class)
 	public void loginDBTest(String userName, String password) {
 		loginPOM.sendUserName(userName);
 		loginPOM.sendPassword(password);
 		loginPOM.clickLoginBtn();
 		screenShot.captureScreenShot(userName);
+		
+	}
+	//adding new category getting input from excel
+//enabled = false,
+	@Test(priority= 2, dataProvider = "excel-inputs-HTestsRETC_83", dataProviderClass = LoginDataProviders.class)
+	public void validRegionCreation(String Name, String Slug, String parentF, String description, String Title, String Body, String Category) throws InterruptedException {
+	/*, String Title, String Body, String Category,, String Category
+		*/
 		propertypage.clickPropertyAction();
-		propertypage.clickRegions();
+//		propertypage.clickRegions();
+		postpage.clickPostAction();
+		postpage.clickCategoriesMenu();
+
+		postpage.NameAddNewCategory(Name);
+		postpage.SlugAddNewCategory(Slug);
+		screenShot.captureScreenShot("data"+Name);
+		postpage.selectParentFeatureAddNewCategory(parentF);
+		postpage.DescAddNewCategory(description);
+		postpage.buttonAddNewCategoryClick();
+//		driver.navigate().refresh();
+	
+		//click on posts in menu
+		newpostpage.menuPosts();
+		//click on posts in menu
+		postpage.clickALLPostAction();
+		//Click on Add New post
+		newpostpage.addNewPostClick();
+		
+		
+		//Add New Enter Title Input
+		newpostpage.addNewEnterTitleInput(Title);
+		//input content to frame
+		newpostpage.addNewEnterBodyInput(Body);
+		//Click on All categories
+		newpostpage.allCategoriesClick();
+		newpostpage.categorymyCheckSelect(Category);
+//		driver.navigate().refresh();
+		//Click on Publish button
+		newpostpage.publishButtonClick();
+		
+		//message display and confirmation
+				try {
+					newpostpage.messageDisplay.isDisplayed();
+					String actual = newpostpage.displayMessage();
+					System.out.println(actual);
+					String expected = "Post published. View post";
+					Assert.assertEquals(actual, expected);
+					System.out.println("Restored successfully and Confirmed");
+				} catch (Exception e) {
+					System.out.println("NOT Restored");
+				}
 
 	}
-//enabled = false,
-	@Test(priority= 2, dataProvider = "excel-inputs", dataProviderClass = LoginDataProviders.class)
-	public void validRegionCreation(String Name, String Slug, String p_region, String desc) throws InterruptedException {
-		propertypage.NameAddNewRegion(Name);
-		propertypage.SlugAddNewRegion(Slug);
-		screenShot.captureScreenShot("data"+Name);
-		propertypage.selectParetRegionAddNewRegion(p_region);
-		propertypage.DescAddNewRegion(desc);
-		propertypage.buttonAddNewRegionsClick();
-		driver.navigate().refresh();
-	}
 	
-	@Test (priority = 3)	
-	public void regionSearch(){
-		String ss="TC_82";
-		propertypage.regionSearchInput(ss);
-	}
-		
+	
+	
 	
 }

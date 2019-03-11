@@ -2,6 +2,7 @@ package com.training.pom;
 
 import java.util.List;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -91,6 +92,16 @@ public class NewPostPage {
 		this.addNewEnterTitleInput.sendKeys(place);
 	}
 	
+	
+	//Add New Enter Body content Input
+		@FindBy(xpath = "//textarea[@id=\'content\']")
+		WebElement addNewEnterBodyInput;
+
+		public void addNewEnterBodyInput(String content) {
+			this.addNewEnterBodyInput.sendKeys(content);
+		}
+	
+	
 	//Click on All categories
 	@FindBy(linkText ="All Categories")
 	WebElement allCategories;
@@ -98,15 +109,29 @@ public class NewPostPage {
 		this.allCategories.click();
 			}
 	
+	
+	//label[contains(text(),'Black friday')]
+	
+	//category Checkbox Selection
+		@FindBy(xpath="//label[contains(text(),'RETC_018')]")
+		WebElement newss;
+		
+		public void categorymyCheckSelect(String Category){
+			String first="//label[contains(text(),'";
+			String last="')]";
+			String xpathd=first+Category+last;
+			WebElement newss1 = driver.findElement(By.xpath(xpathd));
+			newss1.click();
+			
+/*	
 	//category Checkbox Selection
 	@FindBy(id="in-category-325")
 	WebElement newLaunch;
-	
 	public void categoryCheckSelect(){
 		this.newLaunch.click();
-		
+		*/
 	}
-	
+	//*[@id="category-353"]/label/text()	
 	//category Checkbox Selection- plot
 	@FindBy(id="in-category-370")
 	WebElement newPlot1;
@@ -123,20 +148,31 @@ public class NewPostPage {
 	
 	//input content to frame
 	
-	public void frameTest() {
+	public void frameTest(String body) {
 		List<WebElement> frameList = driver.findElements(By.tagName("iframe"));
 		driver.switchTo().frame(0);
 		WebElement frame = driver.findElement(By.xpath("/html[1]/body[1]"));
-		frame.sendKeys("This is new site");
+		frame.sendKeys(body);
 		driver.switchTo().defaultContent();
 	}
-	
+	//*[@id="content"]//textarea[@id='content']
 	
 	//Click on Publish button
 	@FindBy(id="publish")
+//	@FindBy(id="original_publish")
+//	@FindBy(xpath="//input[@id=\'original_publish\']")
 	WebElement publishButton;
-	public void publishButtonClick(){
+	public void publishButtonClick() throws InterruptedException{
+//		Thread.sleep(1000);
 		this.publishButton.click();
+		// Switching to Alert        
+//        Alert alert = driver.switchTo().alert();
+//		driver.switchTo().alert().accept();
+//		driver.switchTo().alert().dismiss();
+//		alert.dismiss();
+		Thread.sleep(1000);
+		this.publishButton.click();
+		
 	}
 
 	//message display and confirmation
